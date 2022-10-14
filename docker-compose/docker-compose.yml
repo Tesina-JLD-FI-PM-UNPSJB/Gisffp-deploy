@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  #web-app:
+  #  container_name: 'gisfpp-app:v1.0.0'
+  #  image: 'gisfpp-app-web'
+  #  ports:
+  #    - 8080:80  
+  mysql_db:
+    container_name: gisfpp-db
+    image: "mysql:latest"
+    ports:
+      - 23306:3306
+    volumes:
+      - db_data:/var/lib/mysql   
+    environment:
+      - MYSQL_ROOT_PASSWORD=fidelina09
+      - MYSQL_DATABASE=GisfppDB
+      - MYSQL_USER=user_gisfpp
+      - MYSQL_PASSWORD=unpsjbfipm
+  projects_ms:
+    container_name: gisfpp-projects-ms
+    image: "gisfpp-projects:1.0.0"
+    ports: 
+      - 41150:80
+      - 41160:443
+    depends_on:
+      - mysql_db        
+    environment:
+      - DB_CONNECTION_STRING=server=gisfpp-db;port=3306;user=user_gisfpp;password=unpsjbfipm;database=GisfppDB                 
+volumes:
+  db_data:
