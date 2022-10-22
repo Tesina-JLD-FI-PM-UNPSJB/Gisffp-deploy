@@ -1,11 +1,11 @@
 version: "3.9"
 
 services:
-  #web-app:
-  #  container_name: 'gisfpp-app:v1.0.0'
-  #  image: 'gisfpp-app-web'
-  #  ports:
-  #    - 8080:80  
+  web-app:
+    container_name: 'gisfpp-app'
+    image: 'gisfpp-app:1.0.0'
+    ports:
+      - 8080:80  
   mysql_db:
     container_name: gisfpp-db
     image: "mysql:latest"
